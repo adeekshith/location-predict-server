@@ -2,6 +2,9 @@
 
 Logs data from provided by the client and predicts the location based on previously logged data.
 
+####WARNING
+This project is still in an incubator stage. It is under development and not yet ready for production purposes. Feel free to fork it and contribute.
+
 ## API
 
 ### Storing location data

@@ -22,5 +22,17 @@ def predictedLocationData(userid):
     responseJson = logdata.predict.locationPredict(userid)
     return str(responseJson)
 
+@app.route('/location-predict/api/v1/logdata/<userid>/<float:latitude>/<float:longitude>/<int:weekday>/<int:hour>/<int:minutesQuant>')
+def logInputDataV1(userid, latitude, longitude, weekday, hour, minutesQuant):
+    # Log the user data
+    inputData = logdata.incoming.Data(userid, latitude, longitude, weekday, hour, minutesQuant)
+    responseJson = inputData.generateResponseJson()
+    return str(responseJson)
+
+@app.route('/location-predict/api/v1/predict-res/<userid>')
+def predictedLocationDataV1(userid):
+    responseJson = logdata.predict.locationPredict(userid)
+    return str(responseJson)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

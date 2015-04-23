@@ -2,17 +2,17 @@
 
 Logs data from provided by the client and predicts the location based on previously logged data.
 
-# API
-
-
-## Response
+## API
 
 ### Storing location data
 
-Syntax:
+#### Syntax
+`http://mydomain.com/location-predict/api/v1/logdata/<userid>/<float:latitude>/<float:longitude>/<int:weekday>/<int:hour>/<int:minutesQuant>`
+
+#### Depricated Syntax
 `http://mydomain.com/logdata/<string uuid>/<float latitude>/<float longitude>/<int weekday>/<int hour>/<int minutes_quantized>`
 
-Sample response:
+#### Sample response
 
 ```json
 {
@@ -27,10 +27,13 @@ Sample response:
 
 ### Get predicted location
 
-Syntax: 
+#### Syntax
+`http://mydomain.com/location-predict/api/v1/predict-res/<userid>`
+
+#### Depricated Syntax
 `http://mydomain.com/logdata/<uuid>/predictlocation`
 
-Sample response:
+#### Sample response
 
 ```json
 {

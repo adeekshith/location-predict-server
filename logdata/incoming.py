@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import json
-
+import sqlite3
 
 class Data:
 
@@ -15,6 +15,8 @@ class Data:
         self.hour = hour
         self.minuteQuantized = minuteQuantized
         self.inputValidity = self.validateInput()
+        if self.inputValidity == 'valid':
+            self.saveDataToDb()
 
     def validateInput(self):
         if self.latitude > 90.0 or self.latitude < -90.0:
@@ -40,4 +42,17 @@ class Data:
         responseData['error']['comment'] = self.inputValidity
         responseJson = json.dumps(responseData, indent=4, sort_keys=True)
         return responseJson
+
+    def saveDataToDb(self):
+        print "Entered saveData"
+        conn = sqlite3.connect('db/locationdata.db')
+        print "Connected to database"
+        sqlInsertLocationDataDB = 'INSERT INTO locationlog (uuid, latitude, longitude, weekday, hour, minute_quant) VALUES ("{}","{}","{}",{}, {}, {});'
+        sqlInsertLocationDataDB = sqlInsertLocationDataDB.format(self.uuid, self.latitude, self.longitude, self.weekday, self.hour, self.minuteQuantized)        
+        print "Sql statement: {}".format(sqlInsertLocationDataDB)
+        conn.execute(sqlInsertLocationDataDB)
+        conn.commit()
+        print "Entered to db"
+        conn.close()
+        return 0
 

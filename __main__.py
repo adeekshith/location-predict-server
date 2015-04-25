@@ -38,13 +38,5 @@ def predictedLocationDataV1(userid):
     responseJson = logdata.predict.locationPredict(userid)
     return str(responseJson)
 
-@app.route('/location-predict/download-sqlite')
-def downloadDB():
-    print "App download"
-    print current_app.root_folder
-    uploads = os.path.join(current_app.root_folder, app.config['UPLOAD_FOLDER'])
-    print("F-Path: {}".format(uploads))
-    return redirect("/location-predict/", code=302)
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

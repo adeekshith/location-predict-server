@@ -39,7 +39,7 @@ def predictedLocationDataV1(userid):
     return str(responseJson)
 
 @app.route('/location-predict/download-sqlite')
-def download-db():
+def downloadDB():
     uploads = os.path.join(current_app.root_folder, app.config['UPLOAD_FOLDER'])
     print("F-Path: {}".format(uploads))
     return redirect("/location-predict/", code=302)

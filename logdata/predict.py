@@ -8,10 +8,7 @@ def getDataFromDB(uuid):
     conn = sqlite3.connect('../db/locationdata.db')
     sqlGetUserData = 'SELECT uuid, latitude, longitude, weekday, hour, minute_quant, repeated_count FROM locationlog WHERE uuid = "{}";'
     locationEntryDB = conn.execute(sqlGetUserData.format(uuid) )
-    locationEntryList = []
-    for locationEntry in locationEntryDB:
-        locationEntryList.append(locationEntry)
-    conn.close()
+    locationEntryList = list(locationEntryDB)
     return locationEntryList
 
 
@@ -36,5 +33,3 @@ def locationPredict(uuid):
     print "uuid: "
     responseJson = generatePredictedJson(uuid, predictedLat, predictedLon, statusSituation, statusAction)
     return responseJson
-
-# print getDataFromDB('apr0041')

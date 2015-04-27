@@ -49,7 +49,7 @@ class Data:
         print "Entered saveData"
         conn = sqlite3.connect('db/locationdata.db')
         print "Connected to database"
-        insertSQL = 'INSERT INTO locationlog (uuid, latitude, longitude, weekday, hour, minute_quant, repeated_count) VALUES ("{}", {}, {}, {}, {}, {}, 0);'
+        insertSQL = 'INSERT INTO locationlog (uuid, latitude, longitude, weekday, hour, minute_quant, repeated_count) VALUES ("{}", {}, {}, {}, {}, {}, 1);'
         insertSQL = insertSQL.format(
             self.uuid, self.latitude, self.longitude, self.weekday, self.hour, self.minuteQuantized)
         updateSQL = 'UPDATE locationlog SET repeated_count= repeated_count+1 WHERE EXISTS (SELECT * FROM locationlog WHERE uuid = "{}" AND latitude={} AND longitude={} AND weekday={} AND hour={} AND minute_quant={});'

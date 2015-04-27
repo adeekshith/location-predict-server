@@ -3,14 +3,16 @@
 import json
 import sqlite3
 
+
 class Data:
 
     'Data class. Verifies input data, saves and generates output.'
 
     def __init__(self, uuid, latitude, longitude, weekday, hour, minuteQuantized):
         self.uuid = str(uuid)
-        self.latitude = latitude
-        self.longitude = longitude
+        truncateToDigits = 2
+        self.latitude = round(latitude, truncateToDigits)
+        self.longitude = round(longitude, truncateToDigits)
         self.weekday = weekday
         self.hour = hour
         self.minuteQuantized = minuteQuantized
@@ -47,12 +49,17 @@ class Data:
         print "Entered saveData"
         conn = sqlite3.connect('db/locationdata.db')
         print "Connected to database"
-        sqlInsertLocationDataDB = 'INSERT INTO locationlog (uuid, latitude, longitude, weekday, hour, minute_quant) VALUES ("{}","{}","{}",{}, {}, {});'
-        sqlInsertLocationDataDB = sqlInsertLocationDataDB.format(self.uuid, self.latitude, self.longitude, self.weekday, self.hour, self.minuteQuantized)        
-        print "Sql statement: {}".format(sqlInsertLocationDataDB)
-        conn.execute(sqlInsertLocationDataDB)
+        insertSQL = 'INSERT INTO locationlog (uuid, latitude, longitude, weekday, hour, minute_quant, repeated_count) VALUES ("{}", {}, {}, {}, {}, {}, 0);'
+        insertSQL = insertSQL.format(
+            self.uuid, self.latitude, self.longitude, self.weekday, self.hour, self.minuteQuantized)
+        updateSQL = 'UPDATE locationlog SET repeated_count= repeated_count+1 WHERE EXISTS (SELECT * FROM locationlog WHERE uuid = "{}" AND latitude={} AND longitude={} AND weekday={} AND hour={} AND minute_quant={});'
+        updateSQL = updateSQL.format(
+            self.uuid, self.latitude, self.longitude, self.weekday, self.hour, self.minuteQuantized)
+        try:
+            conn.execute(insertSQL)
+        except:
+            conn.execute(updateSQL)
+        print "Table created successfully"
         conn.commit()
-        print "Entered to db"
         conn.close()
         return 0
-

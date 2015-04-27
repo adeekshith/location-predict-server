@@ -10,7 +10,7 @@ class Data:
 
     def __init__(self, uuid, latitude, longitude, weekday, hour, minuteQuantized):
         self.uuid = str(uuid)
-        truncateToDigits = 2
+        truncateToDigits = 6
         self.latitude = round(latitude, truncateToDigits)
         self.longitude = round(longitude, truncateToDigits)
         self.weekday = weekday

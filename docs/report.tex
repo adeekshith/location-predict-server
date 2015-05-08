@@ -97,16 +97,42 @@ The client application acquires the current location of the user via Android API
   \label{tab:label_client_data}
 \end{table}
 
-The table \ref{tab:label_client_data} shows the data that the clinet saves periodically to the server.
+The Table \ref{tab:label_client_data} shows the data that the clinet saves periodically to the server.
 
 \subsubsection{Location prediction based action}
 The server also provides a HTTP REST API to query the predicted location of the user. The client requests the current predicted location of the user using HTTP GET request. The client also gets the current GPS location from the sensor and takes an action depending on the comparison.
 
 \paragraph{Action 1: Report known location but prediction not matched}
-When the user is at a known location but not at the right time, it notifies the user and provides an interface for user acknowledgement.
+When the user is at a known location but not at the right time, it notifies the user as shown in Figure \ref{fig:clinet_prediction_mismatch} and provides an interface for user acknowledgement.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/prediction-mismatch-clinet-scr.png}
+  \caption[Prediction Mismatch]
+   {Screenshot of the client app displaying prediction mismatch notification}
+   \label{fig:clinet_prediction_mismatch}
+\end{figure}
 
 \paragraph{Action 2: Unidentified location}
-When the user is at an unknown location for a certain amount of time, the client side application requests the user to enter the name of this current location. If no name is provided but if the prediction reports that location, it just identifies that location by the coordinates.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/unknown-location-clinet.png}
+  \caption[Notifying unknown location]
+   {Screenshot of the client app notifying about unknown location}
+   \label{fig:clinet_notify_unknown_location}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/enter-location-name.png}
+  \caption[Request Location Identity]
+   {Screenshot of the client app interface to enter location name}
+   \label{fig:clinet_enter_location}
+\end{figure}
+
+When the user is at an unknown location for a certain amount of time, the client side application requests the user to enter the name of this current location. If no name is provided but if the prediction reports that location, it just identifies that location by the coordinates. Figure \ref{fig:clinet_notify_unknown_location} shows the unidentified location notification and Figure \ref{fig:clinet_enter_location} shows the interface to enter a new location.
+
 
 \begin{table}[h!]
   \centering

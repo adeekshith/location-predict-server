@@ -178,8 +178,48 @@ Longitude has a range of - 180 to +180 and it is preprocessed similar to the lat
 lon\_pre[] = (lat[] – max(lon[])+180
 
 \subsubsection{Neural Network Architecture}
-The neural network for this project makes use of 
+The neural network for this project makes use of Levenberg-Marquardt backpropagation algorithm using Python's PyBrain module. The architechture has an input layer with 10 inputs, a hidden layer with 8 hidden neurons and an output layer with two outputs. The input to the neural network is the time information and the output is the geographical coordinates.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/net-arch.png}
+  \caption[NETWORK ARCHITECTURE]
+   {Block diagram of neural net architecture generated using MATLAB}
+   \label{fig:serv_net_arch}
+\end{figure}
+
+I am usually using 20 epochs and a learning rate of 0.2 for training. 70\% of the training dataset is used for training, 15\% for testing and remaining 15\% for validation.
+
+\section{APPLICATIONS}
+The client and server provides fully functional methods and API's to configure it to any application desired. Some of the possible applications are discussed as below.
+
+\subsection{Auto Alarm}
+Imagine a situation when the user forgot to leave to office and still on his bed. The client side application detects that the predicted location at that time should be his office location but it is still his home location. So when there is a mismatch between the office location and the home location, the app alerts the user. This can work as an auto alarm in that way.
+
+\subsection{Auto Lock and Theft Protect}
+When the user location is found to be unknown and does not match either the prediction or the logged location data, it can be configured to auto lock so as to ensure it has not been stolen.
+
+\section{RESULTS}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/net-performance.png}
+  \caption[NETWORK PERFORMANCE]
+   {Performance plot of the network for a test user}
+   \label{fig:serv_net_perf}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/loc-history.png}
+  \caption[LOCATION HISTORY]
+   {Graphical ploting of a test user's geographical loaction}
+   \label{fig:serv_loc_history}
+\end{figure}
+
+The performance of the network varies drastically with the sample data of different users even with the same sample size. Best performance can be expected when there is a regular pattern in the user location over time. The performance is also better if the user is confined to a small geographical area as the input to the neural network is the relative coordinates, the magnitude is less in this case therefore boosting performance. A minimum of 2 weeks of data is needed to for it to predict the location with minimum error. The server automatically removes the data older than 60 days so as to adapt to newer locations as well as to reduce load on the database.
+
+The test user with performance plot shown in Figure \ref{fig:serv_net_perf} has a location history as shown in Figure \ref{fig:serv_loc_history}. We can observe that the user is confined to two cities most of the time and travelling back and forth regularly at almost the same time on weekdays. As there is less complexity in the user's pattern it is trained well within jsut a few epochs as shown in Figure \ref{fig:serv_net_perf} and the performance is good even with lesser samples compared to other cases.
 
 \begin{thebibliography}{1}
 

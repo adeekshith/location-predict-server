@@ -39,9 +39,9 @@ def logInputDataV1(userid, latitude, longitude, weekday, hour, minutesQuant):
     return str(responseJson)
 
 
-@app.route('/location-predict/api/v1/predict-res/<userid>')
-def predictedLocationDataV1(userid):
-    responseJson = logdata.predict.locationPredict(userid)
+@app.route('/location-predict/api/v1/predict-res/<userid>/<float:latitude>/<float:longitude>/<int:weekday>/<int:hour>/<int:minutesQuant>')
+def predictedLocationDataV1(userid, latitude, longitude, weekday, hour, minutesQuant):
+    responseJson = logdata.predict.locationPredict(userid, latitude, longitude, weekday, hour, minutesQuant)
     return str(responseJson)
 
 if __name__ == '__main__':

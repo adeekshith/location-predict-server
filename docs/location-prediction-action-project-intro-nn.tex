@@ -62,118 +62,26 @@ The aim of this project is to  predict the current location of users based on th
 % no \IEEEPARstart
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
-Telephony is only one of the many functions a modern smartphone can do. Smartphones are eqipped with many kinds of advanced sensors making it a sophisticated sensing device. Modern smartphones and IoT include sensors and hardware modules like camera, photosensor, microphone, temperature sensor, GPS, barometer, compass among many others and most of these sensors can be integrated to the wireless network and can be used to form a functional wireless sensor and actuator network. Internet of Things and other embedded devices can have enormous applications including geospatial analysis in various fields from agriculture to medicine ~\cite{iot1}.
+Introcuction here. this is introduction.
 
-With many applications running on a smartphone frequently collecting sensor data and communicating with the network can degrade the performance of the device. Although the computational power of the device is increasing continuously, it is also necessary to use an optimized application protocols to support increasing number of services running on a smartphone or any other embedded device. 
 
-\subsection{Criteria for Selecting Suitable Protocols}
-Here are a few specific criteria to be met for selecting a protocol for smartphones or the Internet Of Things:
+\subsection{ada}
+Sample subsection
 \begin{enumerate}
-  \item Require less bandwidth
-  \item It should have lower latency
-  \item Require less power to operate
-  \item Should be reliable
-  \item It should support major platforms and programming environments
+  \item item1
+  \item item 2
 \end{enumerate}
-
-\subsection{Considered Protocols}
-I have initially considered the following protocols for smartphones and IoT:
-\begin{enumerate}
-  \item Advanced Message Queuing Protocol (AMQP)
-  \item Constrained Application Protocol (CoAP)
-  \item Extensible Messaging and Presence Protocol (XMPP)
-  \item Hypertext Transfer Protocol (HTTP)
-  \item MQTT (formerly Message Queue Telemetry Transport)
-\end{enumerate}
-
-\subsubsection{AMQP}
-This is an open protocol that shines at reliability and interoperability. It is a very feature rich protocol  which supports topic based publish and subscribing mechanism, queuing and many other features but it does not have a good support for mobile platforms. It is more focused on server side implementation~\cite{amqp-vinoski} and for reliable delivery of large number of payloads over millions of connections which makes it an ideal choice for delivering large transactional payloads and building RESTful APIs ~\cite{amqp-restfulapi} but it does not scale down well to embedded devices and for poor quality networks which are often used by mobile environments. ~\cite{amqp1}
 
 \subsubsection{Constrained Application Protocol (CoAP)}
-Constrained Application Protocol is designed to overcome the problems caused by conventional application protocols like HTTP especially in resource constrained situations. This protocol is based on Representational State transfer (REST) architecture. This can be considered as a re-engineered HTTP protocol for resource constrained network ~\cite{coap1} as it supports request/response messaging system similar to HTTP~\cite{coap2} .
+Sample sub sub section.
 
-The CoAP also supports publish/subscribe system but it is not purely event based. Unlike few other protocols like MQTT or AMQP, CoAP model allows connecting to a specified Universal Resource Identifier (URI) instead of subscribing or publishing to topics. When the publisher publishes to the URI, all the subscribers will be notified about it. CoAP uses User Datagram Protocol (UDP) ~\cite{coap-web} because it has less overhead and also provides multicast support. But using UDP comes with a drawback that we cannot easily control the reliability of the communication. To overcome this inherent drawback of UDP, CoAP provides its own reliability mechanism. This is achieved with the use of "confirmable message" and "non-confirmable message". When a message is marked as confirmable, it waits for an acknowledgement otherwise it does not and is similar to the default UDP configuration. 
-
-\subsubsection{XMPP}
-Extensible Messaging and Presence Protocol (XMPP) supports publish/subscribe, it has a very good addressing scheme and it is one of the established protocold for person to person communications. It supports all major operating systems and programming languages but the problem is that it is not designed to be fast and it is not event based which means that it uses polling to check for new messages in order to achieve real time communication ~\cite{xmpp-polling}. This protocol is relatively heavy on system resources and can also hamper battery life. This makes it not much suitable for Embedded devices.
-
-\subsubsection{HTTP}
-The established application protocols like Hypertext Transfer Protocol (HTTP) are does a great job running the major part of Internet communications but may not be suitable for a sensor network or an embedded network as it is based on a request response paradigm which may result in high latency. It is a document based protocol and has a large header size which increases the bandwidth utilization. Having high latency and consuming high bandwidth in turn increases the power required for the communication. HTTP also does not have a good solution to support synchronous communication or pub-push mechanism. This forces the client to do polling in order to have areal time communication which again affects the battery life and consumes higher systems resources. This is not a desirable property for using on mobile/embedded devices due to which we are not selecting this for further analysis in this survey.
-
-\subsubsection{MQTT}
-The MQ Telemetry Transport (MQTT) formerly called Message Queue Telemetry Transport Protocol is a machine to machine connectivity protocol which is designed to be extremely lightweight publish/subscribe messaging transport. It was invented by Dr Andy Stanford-Clark of IBM in 1999. It is designed to be lightweight which makes it apt for using in devices with limited bandwidth, limited processing and memory capabilities ~\cite{mqtt4}. It is an open and royalty-free protocol. There are three principal types of pub/sub systems: topic-based, type-based and content-based ~\cite{urs-hunkeler}, ~\cite{eugster}.
-
-MQTT is based on a publish/subscribe architecture in which any number of clients can publish on a specific topic and any number of clients can also subscribe to any specific topic simultaneously. This is made possible by the decoupling of the publish and subscribe process unlike the Respond to Request protocols. MQTT packet header is kept as small as two bytes so as to make it lightweight. MQTT makes use of TCP protocol for communication. More interestingly, MQTT has a mechanism to adjust the reliability using a parameter called Quality of Service (QoS) ~\cite{mqtt-coap-dinesh}. There are three possible Quality of Service values namely 0, 1 and 2 ~\cite{mqtt3}. Unlike HTTP, this is a binary protocol with a small header size~\cite{mqtt1}.
-
-\subsection{Protocols Selected for Analysis}
-Although there are many communication proocols, due to the constraints imposed by the smartphone ecosystem, the standard protocols cannot be suitable for a sensor networks or mobile networks due to all the reasons stated in the previous sections. The application protocols for smartphones or any other wireless sensor networks require to be energy efficient, bandwidth efficient and capable of working with limited hardware resources like power supply and main memory. Therefore the need arised for a lighter and more efficient protocols. Protocols such as Constrained Application Protocol (CoAP) and MQ Telemetry Protocol (MQTT) have been designed specifically to address the challenges of real-world WSN deployment scenarios. So, we would like to compare the performance and other other aspects between both these protocols so as to select the best one for a specific purpose.
-
-\section{Comparison of MQTT and CoAP}
-MQ Telemetry Transport (MQTT) designed by IBM and Constrained Application Protocol (CoAP) by the IETF group are relatively new but well recognized application protocols which can best suit for smartphone based communications. These are already in implementation in some of the popular smartphone applications.
-
-MQTT uses a publish/subscribe model whereas CoAP is more like a lightweight`\cite{x4} request response alternative to HTTP. We shall compare both the protocols and analyse which protocol is suitable for which kind application ~\cite{iot2}.
-
-One proposed method for wireless networks to transfer data is the publish/subscribe method. In this method, the client which is the smartphone or an embedded device in our case, registers to the channels of interest with the broker(server). This is called subscription. The client which collects or processes the data publishes it to the broker on a specific channel. The broker in turn pushes the data to all the subscribed clients. Unlike the request response architecture, in the publish/subscribe architecture, the clients does not interact directly with each other which means that the clients need not know the address of the other client it is willing to publish. It just pushes the data on a specific channel to the server (which is also called as broker) and only the clients subscribed to that specific channel will receive the information. To make it simple, the clients which publish the data need not know the clients which are subscribed to it and the clients which subscribed to the data need not know who is publishing it. MQTT uses this method and has full support for such asynchronous event based communication. CoAP does not use topics for subscription but instead it pushes a URI and establishes an asynchronous communication.
-
-
-This table shows an overview of MQTT and CoAP
-\begin{table}[h!]
-  \centering
-  \resizebox{0.5\textwidth}{!}{  
-  \begin{tabular}{|c|c|c|}
-  \hline
-    & MQTT & CoAP \\
-
-  \hline
-  \hline
-  Application Layer & Single Layered & Single Layered with 2 conceptual sublayers\\
-  \hline  
-  Transport Layer & Runs on TCP & Runs on UDP\\
-  \hline  
-  Reliability Mechanism & 3 QOS Levels & Confirmable and Non-confirmable\\
-  \hline  
-  Supported Architectures & Publish/ Subscribe & Request-Response, Publish/Subscribe\\
-  \hline  
-\end{tabular}
-}
-  \caption{Avg Packet Received Ratio}
-  \label{tab:MQTT_CoAP_comparison}
-\end{table}
-
-
-\subsection{Qualitative Comparison}
-
-\subsubsection{Communication Pattern}
-Both the protocols follow different communication methods. MQTT is a publish/subscribe only protocol while CoAP is a REST protocol with support for publish/subscribe. Functionality wise, this makes a lot of difference. For using MQTT, the client has to subscribe to a specific channel and the MQTT broker pushes the message on that specific channel when any other client publishes. Whereas CoAP uses a URI for the client to specify its interest and publishes a message as soon as the resource is modified. The advantage of CoAP is that it enables seamless integration with most web applications through HTTP-CoAP proxies.
-
-\subsubsection{Communication Security and Reliability}
-The underlying protocol on which MQTT runs is on TCP, whereas CoAP runs on UDP. This is an advantage for MQTT as it by default inherits all the good security features of TCP whereas CoAP seems to be less reliable than MQTT mostly because it uses UDP. Both the protocols do not have built in secure communication but they support Secure Socket Layer (SSL) which can provide a secure communication channel.
-
-Coming to reliability, MQTT offers three levels of Quality of Service (QoS), namely QoS 0, QoS 1 and QoS 2. QoS 0 does not guarantee reliability, QoS 1 guarantees acknowledgement based reliability and QoS 2 guarantees reliability with no repetition. CoAP has two modes, on with acknowledgement and other without. CoAP without acknowledgement is similar to QoS 0 and CoAP with acknowledgement provides reliability similar to QoS 1. So, we can understand that MQTT provides an additional level of reliability (QoS 2) which does not have a counterpart in CoAP.
-
-\subsubsection{Communication Pattern}
-Both the protocols follow different communication methods. MQTT is a publish/subscribe only protocol while CoAP is a REST protocol with support for publish/subscribe. Functionality wise, this makes a lot of difference. For using MQTT, the client has to subscribe to a specific channel and the MQTT broker pushes the message on that specific channel when any other client publishes. Whereas CoAP uses a URI for the client to specify its interest and publishes a message as soon as the resource is modified. The advantage of CoAP is that it enables seamless integration with most web applications through HTTP-CoAP proxies.
 
 \subsubsection{Other Factors}
 \paragraph{Design and Orientation}
-CoAP makes use of document formats to send the data whereas MQTT is data agnostic meaning that it is can send any data byte by byte which makes it convenient for sending small data packets to notify some event.
+Sample paragraph.
 
 \paragraph{Caching}
-CoAP has an ability to cache messages whereas MQTT can only retain the last published message on a specific channel.
-
-\paragraph{Fragmentation}
-CoAP suports fragmentation which makes it a good option for sending large data using this whreas MQTT has no fragmentation mechanism and it pushes any data byte by byte which can sometimes become unreliable when transferring large data blocks.
-
-
-
-\subsection{Quantitative Comparison}
-Here are a few performance benchmarks to better analyse the two protocols. I am using a MQTT client and mosquitto broker ~\cite{mosquitto} along with a CoAP Client server on a similar hardware and same network to keep the results unbiased. 
-
-
-
-\subsubsection{Packet Loss}
-Network emulation is done in order to analyze the packet loss ratio of both the protocols with acknowledgement and QoS 1 respectively.
-From the table below we can conclude that MQTT with QoS 1 has better packet receive ratio or less packet loss ratio.
+Another sample para.
 
 
 \begin{table}[h!]
@@ -194,21 +102,6 @@ From the table below we can conclude that MQTT with QoS 1 has better packet rece
   \caption{Avg Packet Received Ratio}
   \label{tab:label_test}
 \end{table}
-
-
-\section{Conclusions}
-This work has provided the need for optimized application protocols and also suggested two protocols MQTT and Constrained Application Protocol (CoAP). We have compared both the protocols qualitatively and quantitatively. From the qualitative understanding and the benchmarks, we can conclude that both the protocols are viable alternatives for smartphone applications but each one of them excels in a specific scenario. If the task includes just broadcasting raw sensor data or any other smaller information to a large number of subscribers, then MQTT is a good choice as it provides better control on reliability and it has a lower latency. It can also serve many number of nodes at the same time with minimal increase in latency compared to CoAP. Whereas CoAp supports fragmentation which makes it a good choice where the application involves sending large formatted data like files or documents. CoAP is also recommended in case of low traffic applications and also when a request response type of communication is required.
-
-% conference papers do not normally have an appendix
-
-
-% use section* for acknowledgement
-%\section*{Acknowledgment}
-
-
-%The authors would like to thank...
-
-
 
 
 \begin{thebibliography}{1}

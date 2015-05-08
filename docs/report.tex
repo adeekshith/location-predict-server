@@ -177,6 +177,9 @@ Longitude has a range of - 180 to +180 and it is preprocessed similar to the lat
 
 lon\_pre[] = (lat[] – max(lon[])+180
 
+\subsubsection{Neural Network Architecture}
+The neural network for this project makes use of 
+
 
 \begin{thebibliography}{1}
 
@@ -188,11 +191,6 @@ lon\_pre[] = (lat[] – max(lon[])+180
 Joel L. Fernandes and Ivo C. Lopes, \emph{Performance Evaluation of RESTful Web Services and AMQP Protocol}, Ubiquitous and Future Networks (ICUFN), Da nang.\hskip 1em plus
   0.5em minus 0.4em\relax IEEE 2013 Fifth International Conference on, July 2013.
 
-\bibitem{l2}
-Zanella, A. ; Bui, N. ; Castellani, A. ; Vangelista, L. ; Zorzi, M, Internet of Things for Smart Cities, Internet of Things Journal, IEEE 2014, Volume: 1 , Issue: 1, Page(s): 22 - 32. 
-
-\bibitem{l3}
-Sye Loong Keoh ; Kumar, S.S. ; Tschofenig, H, Securing the Internet of Things: A Standardization Perspective, Internet of Things Journal, IEEE 2014 Volume: 1 , Issue: 3, Page(s): 265 - 275.
 
 \end{thebibliography}
 
@@ -705,6 +703,24 @@ public final class GPSTracker implements LocationListener {
 
 }
 \end{lstlisting}
+
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 \section{Server/\_\_main\_\_.py}
 \begin{lstlisting}

@@ -80,6 +80,25 @@ The client has two main functions.
 \subsubsection{Data Logging}
 The client application acquires the current location of the user via Android API and uses the REST API provided by the server side application to send the location and the time at which the location is acquired to the server.
 
+\begin{table}[h!]
+  \centering
+  \resizebox{0.5\textwidth}{!}{  
+  \begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  & Latitude & Longitude & Weekday & Hours & Minutes \\
+
+  \hline
+  \hline
+  Range & -90 to +90 & -180 to +180 & 0 to 6 & 0 to 23 & 0 to 59 \\
+  \hline  
+\end{tabular}
+}
+  \caption{Data stored to server by the client}
+  \label{tab:label_client_data}
+\end{table}
+
+The table \ref{tab:label_client_data} shows the data that the clinet saves periodically to the server.
+
 \subsubsection{Location prediction based action}
 The server also provides a HTTP REST API to query the predicted location of the user. The client requests the current predicted location of the user using HTTP GET request. The client also gets the current GPS location from the sensor and takes an action depending on the comparison.
 
@@ -88,25 +107,6 @@ When the user is at a known location but not at the right time, it notifies the 
 
 \paragraph{Action 2: Unidentified location}
 When the user is at an unknown location for a certain amount of time, the client side application requests the user to enter the name of this current location. If no name is provided but if the prediction reports that location, it just identifies that location by the coordinates.
-
-\subsection{ada}
-Sample subsection
-\begin{enumerate}
-  \item item1
-  \item item 2
-\end{enumerate}
-
-\subsubsection{Constrained Application Protocol (CoAP)}
-Sample sub sub section.
-
-
-\subsubsection{Other Factors}
-\paragraph{Design and Orientation}
-Sample paragraph.
-
-\paragraph{Caching}
-Another sample para.
-
 
 \begin{table}[h!]
   \centering

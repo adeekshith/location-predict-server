@@ -62,8 +62,32 @@ The aim of this project is to  predict the current location of users based on th
 % no \IEEEPARstart
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
-Introcuction here. this is introduction.
+Many a times we miss a schedule due to forgetfulness. Reminders and alarms solve this issue to some extent but there can be times when we even forget to set an alarm. This project aims to solve this problem by keeping track of users' location and then generates a prediction of their current location by using neural networks. The current location and the predicted location is compared and necessary action is taken by the client side application.
 
+The main scope of this application is to predict the user's current location. The methods and functions to get an estimation as well as for location comparison are built into the client application and are demostrated. However, the applications of this can be extended with time using the existing client and server infrastructure.
+
+\section{Working}
+
+\subsection{Client Application}
+Most smart phones are equipped with a GPS sensor and also provide an API for applications to query its current geographical location. For this project we have designed a mobile application for Android operating system that acquires the current location of the user by using the GPS sensor equipped with the smartphone.
+
+The client has two main functions.
+\begin{enumerate}
+  \item Data Logging
+  \item Location prediction based action
+\end{enumerate}
+
+\subsubsection{Data Logging}
+The client application acquires the current location of the user via Android API and uses the REST API provided by the server side application to send the location and the time at which the location is acquired to the server.
+
+\subsubsection{Location prediction based action}
+The server also provides a HTTP REST API to query the predicted location of the user. The client requests the current predicted location of the user using HTTP GET request. The client also gets the current GPS location from the sensor and takes an action depending on the comparison.
+
+\paragraph{Action 1: Report known location but prediction not matched}
+When the user is at a known location but not at the right time, it notifies the user and provides an interface for user acknowledgement.
+
+\paragraph{Action 2: Unidentified location}
+When the user is at an unknown location for a certain amount of time, the client side application requests the user to enter the name of this current location. If no name is provided but if the prediction reports that location, it just identifies that location by the coordinates.
 
 \subsection{ada}
 Sample subsection

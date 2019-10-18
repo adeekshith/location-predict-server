@@ -31,7 +31,7 @@ email-reply-parser==0.2.0
 enum==0.4.4
 enum34==0.9.23
 exam==0.10.5
-Flask==0.10.1
+Flask==1.0
 Flask-Admin==1.1.0
 Flask-SQLAlchemy==2.0
 Flask-WTF==0.11

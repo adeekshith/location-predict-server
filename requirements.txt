@@ -134,7 +134,7 @@ SQLAlchemy==0.9.9
 stashy==0.1.1
 statsd==1.0.0
 stompy==0.2.9
-thefuck==1.4
+thefuck==3.31
 toronado==0.0.6
 Twisted==20.3.0
 ua-parser==0.3.6

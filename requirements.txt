@@ -136,7 +136,7 @@ statsd==1.0.0
 stompy==0.2.9
 thefuck==3.31
 toronado==0.0.6
-Twisted==20.3.0
+Twisted==22.2.0
 ua-parser==0.3.6
 ujson==1.33
 uncurl==0.0.5

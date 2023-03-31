@@ -63,7 +63,7 @@ pathlib==1.0.1
 Pillow==9.3.0
 powerline-status==2.1.dev9999
 progressbar==2.3
-py==1.4.26
+py==1.11.0
 py2app==0.7.3
 PyAutoGUI==0.9.26
 PyBrain==0.3

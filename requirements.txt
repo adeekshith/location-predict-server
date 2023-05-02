@@ -138,7 +138,7 @@ thefuck==3.31
 toronado==0.0.6
 Twisted==22.10.0
 ua-parser==0.3.6
-ujson==1.33
+ujson==5.4.0
 uncurl==0.0.5
 urllib3==1.26.5
 vboxapi==1.0

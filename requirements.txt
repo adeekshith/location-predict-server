@@ -120,7 +120,7 @@ python-tesseract==0.9.1
 PyTweening==1.0.1
 pytz==2014.10
 raven==5.2.0
-redis==2.10.3
+redis==4.4.4
 requests==1.1.0
 scipy==0.13.0b1
 sentry==7.3.2
